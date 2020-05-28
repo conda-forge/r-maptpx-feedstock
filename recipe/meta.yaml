@@ -1,4 +1,4 @@
-{% set version = '1.9-2' %}
+{% set version = "1.9-7" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,11 +10,11 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/maptpx_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/maptpx/maptpx_{{ version }}.tar.gz
-  sha256: d29d87dfd29d78a563a35630fec9897ed180a505c9ee35693f5153f06495adc4
+  sha256: a720c8378cef7ae83158ae358c09ce1d2afd4ae8479a1f8cf83b97ccf7880539
 
 build:
-  merge_build_host: True  # [win]
-  number: 1004
+  merge_build_host: true  # [win]
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
@@ -46,12 +46,10 @@ test:
 about:
   home: http://faculty.chicagobooth.edu/matt.taddy/index.html
   license: GPL-3
-  summary: Posterior maximization for topic models (LDA) in text analysis, as described in Taddy
-    (2012) `on estimation and selection for topic models'.  Previous versions of this
-    code were included as part of the textir package.  If you want to take advantage
-    of openmp parallelization, uncomment the relevant flags in src/MAKEVARS before compiling.
+  summary: Posterior maximization for topic models (LDA) in text analysis, as described in Taddy (2012) `on estimation and selection for topic models'.  Previous versions of this code were included as part of the textir package.  If you want to take advantage of openmp parallelization, uncomment the relevant flags in src/MAKEVARS
+    before compiling.
   license_family: GPL3
-  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'
+  license_file: {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
 
 extra:
   recipe-maintainers:
