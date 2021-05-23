@@ -21,15 +21,14 @@ build:
 
 requirements:
   build:
-    - {{ compiler('c') }}        # [not win]
-    - {{ compiler('fortran') }}        # [not win]
+    - {{ compiler('c') }}              # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
-    - {{ compiler('m2w64_fortran') }}        # [win]
     - {{ posix }}filesystem        # [win]
     - {{ posix }}make
     - {{ posix }}sed               # [win]
     - {{ posix }}coreutils         # [win]
     - {{ posix }}zip               # [win]
+    - cross-r-base {{ r_base }}    # [build_platform != target_platform]
   host:
     - r-base
     - r-slam
@@ -45,21 +44,16 @@ test:
 
 about:
   home: http://faculty.chicagobooth.edu/matt.taddy/index.html
-  license: GPL-3
+  license: GPL-3.0-only
   summary: Posterior maximization for topic models (LDA) in text analysis, as described in Taddy (2012) `on estimation and selection for topic models'.  Previous versions of this code were included as part of the textir package.  If you want to take advantage of openmp parallelization, uncomment the relevant flags in src/MAKEVARS
     before compiling.
   license_family: GPL3
-  license_file: {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
+  license_file:
+    - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
 
 extra:
   recipe-maintainers:
     - conda-forge/r
-    - johanneskoester
-    - bgruening
-    - daler
-    - jdblischak
-    - cbrueffer
-    - dbast
 
 # Package: maptpx
 # Title: MAP Estimation of Topic Models
